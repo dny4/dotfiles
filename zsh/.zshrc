@@ -1,0 +1,71 @@
+export ZSH="$HOME/.oh-my-zsh"
+
+ZSH_THEME="robbyrussell"
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
+#
+################################################################################
+#
+source $ZSH/oh-my-zsh.sh
+
+alias vim="nvim"
+alias vi="nvim"
+
+alias wt="ps -x | grep waydroid"
+alias ws="sudo waydroid session stop && sudo systemctl stop waydroid.container"
+alias wr="sudo waydroid session stop && sudo systemctl restart waydroid.container"
+
+alias tk="tmux kill-server"
+alias ta="tmux attach"
+alias ts="tmux ls"
+alias tw="tmux neww"
+
+export PATH="$HOME/.local/bin/:$PATH"
+export PATH="$HOME/.local/scripts/:$PATH"
+export PATH="$HOME/.cargo/bin/:$PATH"
+export RUSTC_WRAPPER=s"$HOME/.cargo/bin/sccache"
+
+set -o vi;
+export VISUAL=nvim;
+export EDITOR=nvim;
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+################################################################################
+
+function rn {
+    local IFS=$'\t\n'
+    local tempfile="$(mktemp -t tmp.XXXXXX)"
+    command ranger --cmd="map Q chain shell echo %d > "$tempfile"; quitall" $1
+
+    if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]]; then
+        cd -- "$(cat "$tempfile")" || return
+    fi
+    
+    command rm -f -- "$tempfile" 2>/dev/null
+}
+
+function tmux_ses {
+   tmux-sessionizer.sh 
+   echo "session created, \"ta\" to attach"
+}
+zle -N tmux_ses
+bindkey "^f" tmux_ses
+
+function  vs {
+    vs.sh
+} 
+
+function hg {
+    history | grep $1
+}
+
+function j {
+    rn $(find ~/Courses/ ~/Downloads/ ~/Videos/ ~/Backup -mindepth 1 -maxdepth 4 -type d | fzf)
+}
+################################################################################
+#
+bindkey -v  
+

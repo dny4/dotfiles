@@ -1,0 +1,48 @@
+set -o vi;
+export VISUAL=nvim;
+export EDITOR=nvim;
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+. "$HOME/.cargo/env"
+
+PATH=$PATH:"$HOME/.local/bin/"
+
+source /etc/profile.d/bash_completion.sh
+
+RUSTC_WRAPPER=~/.cargo/bin/sccache;
+
+eval "$(starship init bash)"
+
+
+################################################################################
+
+function ranger {
+    local IFS=$'\t\n'
+    local tempfile="$(mktemp -t tmp.XXXXXX)"
+    local ranger_cmd=(
+        command
+        ranger
+        --cmd="map Q chain shell echo %d > "$tempfile"; quitall"
+    )
+    
+    ${ranger_cmd[@]} "$@"
+    if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]]; then
+        cd -- "$(cat "$tempfile")" || return
+    fi
+    command rm -f -- "$tempfile" 2>/dev/null
+}
+
+function hg {
+    history | grep $1
+}
+
+################################################################################
+alias vim=nvim
+alias rn=ranger
+alias wyt="ps -x | grep waydroid"
+alias wys="sudo waydroid session stop && sudo systemctl stop waydroid.container"
+alias wys="sudo waydroid session stop && sudo systemctl restart waydroid.container"
+
