@@ -2,7 +2,11 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=( 
+    git
+    zsh-autosuggestions
+)
+
 #
 ################################################################################
 #
@@ -33,26 +37,41 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+export PATH=$PATH:/usr/local/go/bin
+     
 ################################################################################
 
-function rn {
-    local IFS=$'\t\n'
-    local tempfile="$(mktemp -t tmp.XXXXXX)"
-    command ranger --cmd="map Q chain shell echo %d > "$tempfile"; quitall" $1
+#function rn {
+#    local IFS=$'\t\n'
+#    local tempfile="$(mktemp -t tmp.XXXXXX)"
+#    command ranger --cmd="map Q chain shell echo %d > "$tempfile"; quitall" $1
+#
+#    if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]]; then
+#        cd -- "$(cat "$tempfile")" || return
+#    fi
+#    
+#    command rm -f -- "$tempfile" 2>/dev/null
+#}
 
-    if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]]; then
-        cd -- "$(cat "$tempfile")" || return
-    fi
-    
-    command rm -f -- "$tempfile" 2>/dev/null
+rn () {
+    echo
+    ranger $1 --choosedir=$HOME/.rangerdir < $TTY
+    LASTDIR=`cat $HOME/.rangerdir`
+    cd "$LASTDIR"
+    zle reset-prompt
 }
+zle -N rn
+bindkey '^r' rn
 
-function tmux_ses {
-   tmux-sessionizer.sh 
-   echo "session created, \"ta\" to attach"
+tmux_ses () {
+    echo
+    tmux-sessionizer.sh 
+    echo "session created, \"ta\" to attach"
+    zle reset-prompt
 }
 zle -N tmux_ses
 bindkey "^f" tmux_ses
+alias t=tmux_ses
 
 function  vs {
     vs.sh
@@ -65,6 +84,11 @@ function hg {
 function j {
     rn $(find ~/Courses/ ~/Downloads/ ~/Videos/ ~/Backup -mindepth 1 -maxdepth 4 -type d | fzf)
 }
+
+function session {
+    tmux attach -t $(tmux ls -F {#S} | tr -d "{}" | fzf)
+}
+alias s=session 
 ################################################################################
 #
 bindkey -v  

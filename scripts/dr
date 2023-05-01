@@ -1,0 +1,12 @@
+#!/bin/bash
+
+folder="/home/dny4/Backup/Metamorphoziz/goals/notes/daily-reflections/"
+
+file="$folder$(date +%j)"
+
+entry=$(echo -e "--------------------------------------------------------------------------------\n$(date +%T)\n--------------------------------------------------------------------------------
+")
+
+echo -e "$entry" >> "$file"
+
+nvim "$file"

@@ -5,9 +5,10 @@ echo ". $(pwd)/bash/bashpref" >> ~/.bashrc
 
 # zshrc
 rm -f ~/.zshrc
-ln -s $(pwd)/zshrc/.zshrc ~/.zshrc
+ln -s $(pwd)/zsh/.zshrc ~/.zshrc
 
 #scripts
+rm -rf ~/.local/scripts/ 
 ln -s $(pwd)/scripts ~/.local/scripts
 
 # tmux

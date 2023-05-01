@@ -21,6 +21,12 @@ return require('packer').startup(function(use)
         end
     })
 
+    use { "ellisonleao/gruvbox.nvim" }
+
+    use { "savq/melange-nvim" }
+
+    use { "Shatur/neovim-ayu" }
+
     use({
         "folke/trouble.nvim",
         config = function()
@@ -86,12 +92,6 @@ return require('packer').startup(function(use)
 
     use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
 
-    -- install without yarn or npm
-    use({
-        "iamcco/markdown-preview.nvim",
-        run = function() vim.fn["mkdp#util#install"]() end,
-    })
-
     use({
         "iamcco/markdown-preview.nvim",
         run = "cd app && npm install",
@@ -130,4 +130,15 @@ return require('packer').startup(function(use)
             end,
         }
     }
+
+--    use {
+--        'nvim-lualine/lualine.nvim',
+--        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+--    }
+--
+--
+--    use {'romgrk/barbar.nvim', requires = {
+--        'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+--        'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+--    }}
 end)
