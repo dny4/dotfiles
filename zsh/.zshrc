@@ -27,7 +27,7 @@ alias tw="tmux neww"
 export PATH="$HOME/.local/bin/:$PATH"
 export PATH="$HOME/.local/scripts/:$PATH"
 export PATH="$HOME/.cargo/bin/:$PATH"
-export RUSTC_WRAPPER=s"$HOME/.cargo/bin/sccache"
+#export RUSTC_WRAPPER=s"$HOME/.cargo/bin/sccache"
 
 set -o vi;
 export VISUAL=nvim;

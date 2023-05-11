@@ -30,7 +30,10 @@ vim.keymap.set('n', '<leader>fe', vim.cmd.NvimTreeFocus, {})
 vim.keymap.set('n', '<leader>zm', vim.cmd.ZenMode)
 
 vim.keymap.set('n', '<leader>sc', function() 
-    vim.cmd("set spell")
+    vim.cmd("set spell spelllang=en_us")
 end)
 
+vim.keymap.set('n', '<leader>ssc', function() 
+    vim.cmd("set nospell")
+end)
 vim.keymap.set('n', '<leader>rr', vim.cmd.reg)
