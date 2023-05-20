@@ -21,6 +21,8 @@ return require('packer').startup(function(use)
         end
     })
 
+    use ({ 'projekt0n/github-nvim-theme', tag = 'v0.0.7' })
+
     use { "ellisonleao/gruvbox.nvim" }
 
     use { "savq/melange-nvim" }

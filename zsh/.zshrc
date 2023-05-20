@@ -63,7 +63,7 @@ rn () {
 zle -N rn
 bindkey '^r' rn
 
-tmux_ses () {
+tmux_ses() {
     echo
     tmux-sessionizer.sh 
     echo "session created, \"ta\" to attach"
@@ -71,7 +71,6 @@ tmux_ses () {
 }
 zle -N tmux_ses
 bindkey "^f" tmux_ses
-alias t=tmux_ses
 
 function  vs {
     vs.sh

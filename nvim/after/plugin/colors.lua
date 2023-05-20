@@ -2,9 +2,10 @@ function ColorMyPencils(color)
     vim.opt.termguicolors = true
 
     -- color = color or "gruvbox"
-    color = color or "rose-pine"
+    -- color = color or "rose-pine"
     -- color = color or "melange"
     -- color = color or "ayu"
+    color = color or "github_dark"
 
     vim.cmd.colorscheme(color)
 
