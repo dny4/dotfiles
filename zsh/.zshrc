@@ -28,6 +28,7 @@ export PATH="$HOME/.local/bin/:$PATH"
 export PATH="$HOME/.local/scripts/:$PATH"
 export PATH="$HOME/.cargo/bin/:$PATH"
 #export RUSTC_WRAPPER=s"$HOME/.cargo/bin/sccache"
+export PATH="/squashfs-root/usr/bin/:$PATH"
 
 set -o vi;
 export VISUAL=nvim;

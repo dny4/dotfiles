@@ -1,0 +1,20 @@
+{
+  "themes": [
+    {
+      "theme-name": "Play Book's Nights",
+      "fg-color": "rgb(111,61,24)",
+      "bg-color": "rgb(236,152,74)",
+      "link-color": "#076678",
+      "invert": false,
+      "dark-mode": false
+    },
+    {
+      "theme-name": "darker text",
+      "fg-color": "rgb(87,42,10)",
+      "bg-color": "rgb(236,152,74)",
+      "link-color": "#076678",
+      "invert": false,
+      "dark-mode": false
+    }
+  ]
+}
