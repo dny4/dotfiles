@@ -10,6 +10,7 @@ function ColorMyPencils(color)
     vim.cmd.colorscheme(color)
 
     local barcolor = "#393840"
+    local barcolor = "#303446"
     vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
     vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
@@ -22,6 +23,9 @@ function ColorMyPencils(color)
 
     vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
     vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none" })
+
+    vim.api.nvim_set_hl(0, "VertSplit", { fg = barcolor })
 
 end
 

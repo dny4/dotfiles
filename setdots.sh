@@ -1,7 +1,7 @@
 #!/bin/bash 
 
 # bashpref
-echo ". $(pwd)/bash/bashpref" >> ~/.bashrc
+# echo ". $(pwd)/bash/bashpref" >> ~/.bashrc
 
 # zshrc
 rm -f ~/.zshrc
@@ -26,6 +26,10 @@ ln -s $(pwd)/lvim ~/.config/lvim
 # sway
 rm -rf ~/.config/nvim 
 ln -s $(pwd)/sway ~/.config/sway
+
+# zathura 
+rm -rf ~/.config/zathura 
+ln -s $(pwd)/zathura ~/.config/zathura
 
 # gsettings 
 # dconf load / < file.conf

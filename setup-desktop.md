@@ -51,8 +51,13 @@ color picker, caffeine
 
 # VSCode or VSCodium 
 
+# Boxes 
+
 # VirtualBox
 
 # Setup Backup drive - edit fstab to automount at boot
+
+# Zathura as default pdf reader
+`for type in pdf x-pdf fdf xdp xfdf pdx; do xdg-mime default org.pwmt.zathura.desktop application/$type; done`
 
 

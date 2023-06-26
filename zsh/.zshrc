@@ -16,8 +16,8 @@ alias vim="nvim"
 alias vi="nvim"
 
 alias wt="ps -x | grep waydroid"
-alias ws="sudo waydroid session stop && sudo systemctl stop waydroid.container"
-alias wr="sudo waydroid session stop && sudo systemctl restart waydroid.container"
+alias ws="sudo waydroid session stop && sudo systemctl stop waydroid-container.service"
+alias wr="sudo waydroid session stop && sudo systemctl restart waydroid-container.service"
 
 alias tk="tmux kill-server"
 alias ta="tmux attach"
@@ -42,17 +42,11 @@ export PATH=$PATH:/usr/local/go/bin
      
 ################################################################################
 
-#function rn {
-#    local IFS=$'\t\n'
-#    local tempfile="$(mktemp -t tmp.XXXXXX)"
-#    command ranger --cmd="map Q chain shell echo %d > "$tempfile"; quitall" $1
-#
-#    if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]]; then
-#        cd -- "$(cat "$tempfile")" || return
-#    fi
-#    
-#    command rm -f -- "$tempfile" 2>/dev/null
-#}
+j(){
+    cd $(find ~ -mindepth 1 -maxdepth 4 -type d | fzf)
+}
+zle -N j
+bindkey '^j' j
 
 rn () {
     echo
@@ -67,7 +61,6 @@ bindkey '^r' rn
 tmux_ses() {
     echo
     tmux-sessionizer.sh 
-    echo "session created, \"ta\" to attach"
     zle reset-prompt
 }
 zle -N tmux_ses
@@ -75,15 +68,12 @@ bindkey "^f" tmux_ses
 
 function  vs {
     vs.sh
-} 
+}
 
 function hg {
     history | grep $1
 }
 
-function j {
-    rn $(find ~/Courses/ ~/Downloads/ ~/Videos/ ~/Backup -mindepth 1 -maxdepth 4 -type d | fzf)
-}
 
 function session {
     tmux attach -t $(tmux ls -F {#S} | tr -d "{}" | fzf)
@@ -93,3 +83,8 @@ alias s=session
 #
 bindkey -v  
 
+
+if [ -z "$TMUX" ]
+then 
+    tmux attach -t default || tmux new -s default
+fi  

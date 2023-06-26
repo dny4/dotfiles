@@ -29,6 +29,8 @@ return require('packer').startup(function(use)
 
     use { "Shatur/neovim-ayu" }
 
+    use { "catppuccin/vim" , as = 'catppuccin' }
+
     use({
         "folke/trouble.nvim",
         config = function()

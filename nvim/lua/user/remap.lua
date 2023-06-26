@@ -31,9 +31,12 @@ vim.keymap.set('n', '<leader>zm', vim.cmd.ZenMode)
 
 vim.keymap.set('n', '<leader>sc', function() 
     vim.cmd("set spell spelllang=en_us")
+    print("Spell check enabled")
 end)
 
 vim.keymap.set('n', '<leader>ssc', function() 
     vim.cmd("set nospell")
+    print("Spell check disabled")
 end)
+
 vim.keymap.set('n', '<leader>rr', vim.cmd.reg)
