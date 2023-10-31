@@ -1,0 +1,12 @@
+/*gnome-terminal padding*/
+VteTerminal,
+TerminalScreen,
+vte-terminal {
+    padding: 2px 1px 1px 6px;
+    -VteTerminal-inner-border: 2px 1px 1px 6px;
+ }
+
+ /*window corner radius override*/
+decoration, window, window.background, window.titlebar {
+    border-radius: 0px;
+}

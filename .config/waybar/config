@@ -1,0 +1,148 @@
+{
+  "modules-left": ["sway/workspaces",
+    "sway/window", 
+    "sway/mode"
+  ],
+
+  "modules-center": ["clock"],
+
+  "modules-right": ["custom/mem",
+    "backlight",
+    "pulseaudio",
+    "bluetooth",
+    "network",
+    "battery",
+    "tray"
+  ],
+
+  "sway/workspaces": {
+    "disable-scroll": true,
+  },
+
+  "sway/window": {
+    "disable-scroll": true,
+    "format": "{}",
+    "max-length": 20,
+    "all-outputs": true
+  },
+
+  "sway/mode": {
+    "format": "{}",
+    "max-length": 20,
+    "all-outputs": true
+  },
+
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{percent}% {icon}",
+    "format-icons": ["", ""]
+  },
+
+  "backlight/slider": {
+    "min": 0,
+    "max": 100,
+    "orientation": "horizontal",
+    "device": "intel_backlight"
+  },
+
+  "keyboard-state": {
+    //"numlock": true,
+    "capslock": true,
+    "format": "{name} {icon} ",
+    "format-icons": {
+      "locked": " ",
+      "unlocked": ""
+    },
+  },
+
+  "bluetooth": {
+    "format": " {status}",
+    "format-connected": "{device_alias} ",
+    "format-connected-battery": "{device_alias} {device_battery_percentage}% ",
+    // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+  },
+
+  "network": {
+    "interface": "wlp3s0",
+    "format": "{ifname}",
+    "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-ethernet": "{ipaddr}/{cidr} 󰊗",
+    "format-disconnected": "", //An empty format will hide the module.
+    "tooltip-format": "{ifname} via {gwaddr} 󰊗",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    "tooltip-format-ethernet": "{ifname} ",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50
+  },
+
+  "clock": {
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format": "{:%a, %d %b, %I:%M %p}"
+  },
+
+  "custom/weather": {
+    "format": "{}",
+    "tooltip": true,
+    "interval": 1800,
+    "exec": "$HOME/.config/waybar/scripts/wttr.py",
+    "return-type": "json"
+  },
+
+  "pulseaudio": {
+    // "scroll-step": 1, // %, can be a float
+    "reverse-scrolling": 1,
+    "format": "{volume}% {icon} {format_source}",
+    "format-bluetooth": "{volume}% {icon}  {format_source}",
+    "format-bluetooth-muted": " {icon}  {format_source}",
+    "format-muted": "婢 {format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["婢", "奔", "墳"]
+    },
+    "on-click": "pavucontrol",
+    "min-length": 13,
+  },
+
+  "custom/mem": {
+    "format": "{} ",
+    "interval": 3,
+    "exec": "free -h | awk '/Mem:/{printf $3}'",
+    "tooltip": false,
+  },
+
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{percent}% {icon}",
+    "format-icons": ["","","","", "", "", ""],
+    "min-length": 7,
+  },
+
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["", "", "", "", "", "", "", "", "", ""],
+    "on-update": "$HOME/.config/waybar/scripts/check_battery.sh",
+  },
+
+  "tray": {
+    "icon-size": 10,
+    "spacing": 0
+  },
+}

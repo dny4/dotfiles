@@ -1,0 +1,44 @@
+
+live_config_reload: true
+
+env:
+  TERM: 'xterm-256color'
+
+shell:
+  program: /bin/zsh
+
+import:
+    - ~/.config/alacritty/catppuccin.yml
+
+key_bindings:
+    - { key: Return,   mods: Control|Shift, action: SpawnNewInstance }
+
+window:
+  decorations: "none"
+  padding:
+    x: 4
+    y: 0
+
+dynamic_padding: false
+
+font:
+  normal:
+    family: FiraCode NFM
+    style: Regular
+
+  size: 16
+
+cursor:
+  style:
+    shape: Block
+  vi_mode_style:
+    shape: Block
+
+custom_cursor_colors: true
+colors:
+  cursor:
+    text: '#1e1e2e'
+    cursor: '#b4befe'
+
+
+

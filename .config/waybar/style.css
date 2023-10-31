@@ -1,0 +1,240 @@
+* {
+  font-family: "FiraCode NFM";
+  font-size: 15px;
+  margin-bottom: 1px;
+}
+
+window#waybar {
+  background: #1e1e2e;
+  color: #cdd6f4;
+}
+
+#window {
+  margin-left: 8px;
+
+  padding-left: 4px;
+  padding-right: 4px;
+
+  color: #cdd6f4;
+
+  border-top: 2px solid red;
+  border-radius: 10px;
+}
+
+
+#workspaces {
+}
+
+#workspaces button {
+  transition: none;
+  color: #7c818c;
+  padding: 5px;
+  font-size: 14px;
+}
+
+#workspaces button.persistent {
+  color: #7c818c;
+  font-size: 12px;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+#workspaces button:hover {
+  transition: none;
+  box-shadow: inherit;
+  text-shadow: inherit;
+  border-radius: inherit;
+  color: #383c4a;
+  background: #313244;
+}
+
+#workspaces button.focused {
+  color: #cdd6f4;
+
+  border-top: 2px solid red;
+  border-radius: 10px;
+}
+
+#mode {
+  margin-left: 8px;
+  padding-left: 4px;
+  padding-right: 4px;
+
+  color: #cdd6f4;
+
+  border-top: 2px solid red;
+  border-radius: 10px;
+}
+
+#clock {
+  padding-left: 8px;
+  padding-right: 8px;
+
+  border-top: 2px solid #b4befe;;
+  border-radius: 10px;
+
+  color: #cdd6f4;
+}
+
+#custom-weather {
+  padding-left: 4px;
+  padding-right: 8px;
+  border: 1px solid #b4befe;;
+  border-radius: 0px 10px 10px 0px;
+  border-width: 0px 2px 0px 0px;
+  border-color: #b4befe;
+  transition: none;
+  color: #cdd6f4;
+}
+
+#pulseaudio {
+  margin-right: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+
+  color: #cdd6f4;
+
+  border-top: 2px solid green;
+  border-radius: 12px;
+}
+
+#pulseaudio.muted {
+  border-color: red;
+}
+
+#custom-mem {
+  margin-right: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+
+  border-top: 2px solid #b4befe;
+  border-radius: 10px;
+
+  color: #cdd6f4;
+}
+
+#temperature {
+  margin-right: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+
+  border: 1px solid #b4befe;
+  border-radius: 10px;
+  border-width: 0px 1px 0px 1px;
+
+  transition: none;
+  color: #cdd6f4;
+}
+
+#temperature.critical {
+  background-color: #eb4d4b;
+}
+
+#backlight {
+  margin-right: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+
+  border-top: 2px solid #b4befe;
+  border-radius: 10px;
+
+  color: #cdd6fc;
+}
+
+#bluetooth {
+  margin-right: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+
+  border-top: 2px solid #b4befe;
+  border-radius: 12px;
+
+  color: #cdd6f4;
+}
+
+#bluetooth.off {
+  border-color: red;
+}
+
+#bluetooth.discovering {
+  border-color: yellow;
+}
+#bluetooth.connected {
+  border-color: green;
+}
+
+#network {
+  margin-right: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+
+  border-top: 2px solid #b4befe;
+  border-radius: 12px;
+
+  color: #cdd6f4;
+}
+#network.wifi {
+  border-color: green;
+}
+
+#battery {
+  margin-right: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+
+  border-top: 2px solid #b4befe;
+  border-radius: 12px;
+
+  color: #cdd6f4;
+}
+
+#battery.charging {
+  border-color: green;
+}
+
+#battery.warning:not(.charging) {
+  border-color: #ffbe61;
+}
+
+#battery.critical:not(.charging) {
+  border-color: #f53c3c;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#tray {
+  transition: none;
+  color: #cdd6f4;
+  background: #383c4a;
+}
+
+#backlight-slider slider {
+  min-height: 0px;
+  min-width: 0px;
+  opacity: 0;
+  background-image: none;
+  border: none;
+  box-shadow: none;
+}
+
+#backlight-slider trough {
+  min-height: 80px;
+  min-width: 10px;
+  border-radius: 5px;
+  background-color: black;
+}
+
+#backlight-slider highlight {
+  min-width: 10px;
+  border-radius: 5px;
+  background-color: red;
+}
+
+@keyframes blink {
+  to {
+    background-color: #cdd6f4;
+    color: #000000;
+  }
+}
