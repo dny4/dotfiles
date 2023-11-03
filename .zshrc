@@ -24,7 +24,7 @@ alias trw="tmux rename-window"
 # mkself 
 function note() {
   d=$(date +%F)
-  file=daily-logs/$d.md
+  file=$HOME/Projects/mkself/daily-logs/$d.md
   time=$(date +%H:%M" "%p)
   head="---\nauthor: Dnyaneshwar\ndate: $d\ntags:\n  - default\n---\n\n**$time**\n"
 
@@ -39,7 +39,7 @@ function note() {
 # mkself dash-f
 function dashf() {
   d=$(date +%F)
-  file=dashf/daily-logs/$d.md
+  file=$HOME/Projects/mkself/dashf/logs/$d.md
   time=$(date +%H:%M" "%p)
   head="---\nauthor: Dnyaneshwar\ndate: $d\ntags:\n  - dashf\n  - nnn\n---\n\n**$time**\n"
 
@@ -131,6 +131,15 @@ function ses() {
   tmux switch-client -t "$1"
   echo "switched to $1"
 }
+
+lfcd(){
+  lf
+  DIR=$(cat ~/.lfdir)
+  cd $DIR
+  zle reset-prompt
+}
+zle -N lfcd
+bindkey '^k' lfcd
 
 # colorful manpages
 man() {

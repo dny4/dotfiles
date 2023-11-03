@@ -275,4 +275,12 @@ return {
     build = "cd formatter && npm i && npm run build",
     config = true,
   },
+  {
+    "folke/zen-mode.nvim",
+    opts = {
+      window = {
+        width = 1,
+      },
+    },
+  },
 }

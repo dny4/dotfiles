@@ -5,13 +5,16 @@ set shell zsh
 set icons
 set incsearch
 set incfilter
-# set scrolloff 0
 set hidden false
 
 set previewer ctpv
 set cleaner ctpvclear
 &ctpv -s $id
 &ctpvquit $id
+
+set errorfmt "\033[7;31m"
+set cursorpreviewfmt "\033[7m"
+set promptfmt "\033[32;1m%d\033[0m\033[32;1m%f\033[0m"
 
 # set '-eu' options for shell commands
 # These options are used to have safer shell commands. Option '-e' is used to
@@ -39,7 +42,7 @@ map gs cd ~/Documents
 map gp cd ~/Projects
 map gn cd ~/Projects/mkself
 map gw cd ~/Projects/work
-map gv cd /Videos
+map gv cd ~/Videos
 map gc cd ~/Courses
 map gC cd ~/.config
 
@@ -55,9 +58,9 @@ map I %file "$f"
 
 map y
 map yy copy
-map yp $printf "%s" "$fx" | pbcopy       # full path
-map yn $printf "%s" "${fx##*/}" | pbcopy # filename
-map yd $printf "%s" "${fx%/*}" | pbcopy  # dirname
+map yp $printf "%s" "$fx" | wl-copy # full path
+map yn $printf "%s" "${fx##*/}" | wl-copy # filename
+map yd $printf "%s" "${fx%/*}" | wl-copy  # dirname
 
 map d
 map dd cut
@@ -115,10 +118,20 @@ map z1 :set nopreview; set ratios 1
 map z2 :set nopreview; set ratios 1:2
 map z3 :set ratios 1:2:3; set preview
 
+map sw set_wallpaper
+
+cmd edit-config ${{
+    $EDITOR ~/.config/lf/lfrc
+    lf -remote "send $id source ~/.config/lf/lfrc"
+}}
+
+map C edit-config
+
 cmd cfg_reload source ~/.config/lf/lfrc
 cmd follow_link %{{
   lf -remote "send ${id} select '$(readlink $f)'"
 }}
+
 map gL follow_link
 map S $$SHELL
 
@@ -287,5 +300,9 @@ cmd fzf_grep ${{
 
 cmd node_script ${{
     script=$(cat package.json | jq -r '.scripts | keys[] ' | sort | fzf --height 20%) && npm run $(echo "$script")
+}}
+
+cmd set_wallpaper ${{
+  gsettings set org.gnome.desktop.background picture-uri-dark file://$(printf "%s" "$fx")
 }}
 
