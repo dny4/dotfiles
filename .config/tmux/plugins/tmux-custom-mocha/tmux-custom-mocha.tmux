@@ -77,11 +77,11 @@ tmux_set status-left "$LS"
 # Right side of status bar
 tmux_set status-right-length 150
 
-RS="#[fg=$BG,bg=$FG] $date_icon $date_format #[fg=$FG]"
+RS="#[fg=$FG] ╽ $date_icon $date_format #[fg=$FG]"
 
-RS="#[fg=$FG,bg=$G08] $time_icon $time_format $RS"
+RS="#[fg=$FG] ╽ $time_icon $time_format $RS"
 
-RS="#[fg=$FG,bg=$G09] $download_speed_icon #{download_speed} $RS"
+RS="#[fg=$FG] ╽ $download_speed_icon #{download_speed} $RS"
 
 # RS="#[fg=$FG,bg=$G10] #{pomodoro_status} $RS"
 

@@ -52,19 +52,6 @@ function dashf() {
   nvim "$file"
 }
 
-
-# open pdf in zathura, epub in foliate
-alias fp='zathura "$(find ~/Courses ~/Downloads ~/Documents ~/Projects -name "*.pdf" | fzf -0)"  --fork'
-alias fe='xdg-open "$(find ~/Courses ~/Downloads ~/Documents ~/Projects -name "*.epub" | fzf)" 2>/dev/null'
-
-# play single video with mpv
-alias fm='vod="$(find ~/Courses ~/Videos ~/Downloads -regex ".*\.\(mkv\|mp4\)" | fzf)" && mpv "$vod" 1>/dev/null 2>/dev/null &; echo -e "Playing...\n$vod";'
-
-# play folder with mpv 
-alias ffm='vod="$(find ~/Courses ~/Videos ~/Downloads -type d | fzf)" && mpv "$vod" 1>/dev/null 2>/dev/null &; echo -e "Playing...\n$vod"'
-
-alias fh="history | awk '{\$1=\"\"; print}' | sort | uniq | fzf"
-
 ################################################################################
 
 export PATH="$HOME/.local/bin/:$PATH"
@@ -152,6 +139,49 @@ man() {
     LESS_TERMCAP_ue="$(printf "\e[0m")" \
     LESS_TERMCAP_us="$(printf "\e[1;32m")" \
     man "${@}"
+}
+
+# open pdf in zathura, epub in foliate
+fp() {
+  file="$(find ~/Courses ~/Downloads ~/Documents ~/Projects -name "*.pdf" | fzf -0)"
+  if [[ $file ]]; then
+    zathura "$file" --fork
+  fi
+  zle reset-prompt
+}
+zle -N fp
+bindkey '^p' fp
+
+fe() {
+  file="$(find ~/Courses ~/Downloads ~/Documents ~/Projects -name "*.epub" | fzf)"
+  if [[ $file ]]; then
+    xdg-open "$file" 2>/dev/null
+  fi
+  zle reset-prompt
+}
+zle -N fe
+bindkey '^e' fe
+
+# play single video with mpv
+fm(){
+  vod="$(find ~/Courses ~/Videos ~/Downloads -regex ".*\.\(mkv\|mp4\)" | fzf)"
+  if [[ $vod ]]; then
+    mpv "$vod" 1>/dev/null 2>/dev/null &;
+    echo -e "Playing...\n$vod";
+  fi
+  zle reset-prompt
+}
+zle -N fm
+bindkey '^v' fm
+
+# play folder with mpv 
+ffm() {
+  vod="$(find ~/Courses ~/Videos ~/Downloads -type d | fzf)"
+  if [[ $vod ]]; then
+    mpv "$vod" 1>/dev/null 2>/dev/null &;
+    echo -e "Playing...\n$vod"
+  fi
+  zle reset-prompt
 }
 
 ################################################################################
