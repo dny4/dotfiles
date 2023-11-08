@@ -184,6 +184,14 @@ ffm() {
   zle reset-prompt
 }
 
+run_script() {
+  # sh $(gum file ~/.local/scripts/)
+  sh ~/.local/scripts/$(ls ~/.local/scripts | gum filter --height 20 --indicator=">")
+  zle reset-prompt
+}
+zle -N run_script
+bindkey '^s' run_script
+
 ################################################################################
 
 eval "$(starship init zsh)"
