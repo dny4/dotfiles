@@ -12,5 +12,7 @@ vim.keymap.set("n", "<leader>zm", vim.cmd.ZenMode, { desc = "ZenMode" })
 
 vim.keymap.set("n", "<leader>T", vim.cmd.Telescope, { desc = "Telescope" })
 
+vim.keymap.set("n", "<leader>cts", vim.cmd.TailwindSort, { desc = "TailwindSort" })
+
 vim.g.loaded_netrw = 0
 vim.g.loaded_netrwPlugin = 0
