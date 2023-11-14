@@ -1,0 +1,9 @@
+
+yt-dlp -f bestaudio \
+-x --ppa "ffmpeg: -c:v mjpeg -vf crop=\"'if(gt(ih,iw),iw,ih)':'if(gt(iw,ih),ih,iw)'\"" \
+--convert-thumbnails jpg \
+--audio-format mp3 \
+--audio-quality 0 \
+--embed-thumbnail \--add-metadata \
+-o '%(playlist)s/%(title)s.%(ext)s' \
+$@
