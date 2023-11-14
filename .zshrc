@@ -1,13 +1,14 @@
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="robbyrussell"
-# Add wisely, as too many plugins slow down shell startup.
 plugins=( 
     git
     zsh-autosuggestions
+    zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 ################################################################################
 
@@ -197,9 +198,6 @@ bindkey '^s' run_script
 eval "$(starship init zsh)"
 
 ################################################################################
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 
 PATH="/home/dny4/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/dny4/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
