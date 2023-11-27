@@ -75,13 +75,16 @@ LS="#[fg=$BG,bg=$FG] $session_icon #S #[fg=$FG]"
 tmux_set status-left "$LS"
 
 # Right side of status bar
+# ⏐ ⸽ ⸾ ╽ ⍿ ⦚
+SEP='⏐'
+
 tmux_set status-right-length 150
 
-RS="#[fg=$FG] ╽ $date_icon $date_format #[fg=$FG]"
+RS="#[fg=$FG] $SEP $date_icon $date_format #[fg=$FG]"
 
-RS="#[fg=$FG] ╽ $time_icon $time_format $RS"
+RS="#[fg=$FG] $SEP $time_icon $time_format $RS"
 
-RS="#[fg=$FG] ╽ $download_speed_icon #{download_speed} $RS"
+RS="#[fg=$FG] $SEP $download_speed_icon #{download_speed} $RS"
 
 # RS="#[fg=$FG,bg=$G10] #{pomodoro_status} $RS"
 

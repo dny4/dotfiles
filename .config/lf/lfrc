@@ -37,6 +37,7 @@ map R :reload; recol; cfg_reload
 map sr set reverse!
 
 map gh cd ~
+map gb cd ~/Downloads/Ebooks
 map gd cd ~/Downloads
 map gs cd ~/Documents
 map gp cd ~/Projects
