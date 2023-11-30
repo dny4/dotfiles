@@ -37,21 +37,6 @@ function note() {
 
   nvim "$file"
 }
-# mkself dash-f
-function dashf() {
-  d=$(date +%F)
-  file=$HOME/Projects/mkself/dashf/logs/$d.md
-  time=$(date +%H:%M" "%p)
-  head="---\nauthor: Dnyaneshwar\ndate: $d\ntags:\n  - dashf\n  - nnn\n---\n\n**$time**\n"
-
-  if [ -f "$file" ]; then
-    echo "\n---\n**$time**\n" >> "$file"
-  else
-    echo "$head" > "$file"
-  fi
-
-  nvim "$file"
-}
 
 ################################################################################
 
