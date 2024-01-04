@@ -25,7 +25,7 @@ alias trw="tmux rename-window"
 # mkself 
 function note() {
   d=$(date +%F)
-  file=$HOME/Projects/mkself/daily-logs/$d.md
+  file=$HOME/Projects/mkself/daily-logs/2024/$d.md
   time=$(date +%H:%M" "%p)
   head="---\nauthor: Dnyaneshwar\ndate: $d\ntags:\n  - default\n---\n\n**$time**\n"
 
@@ -127,26 +127,15 @@ man() {
     man "${@}"
 }
 
-# open pdf in zathura, epub in foliate
-fp() {
-  file="$(find ~/Courses ~/Downloads ~/Documents ~/Projects -name "*.pdf" | fzf -0)"
-  if [[ $file ]]; then
-    zathura "$file" --fork
-  fi
-  zle reset-prompt
-}
-zle -N fp
-bindkey '^p' fp
-
-fe() {
-  file="$(find ~/Courses ~/Downloads ~/Documents ~/Projects -name "*.epub" | fzf)"
+book() {
+  file="$(find ~/Courses ~/Downloads ~/Documents ~/Projects -regextype posix-extended -regex '.*\.(epub|pdf)$' | fzf)"
   if [[ $file ]]; then
     xdg-open "$file" 2>/dev/null
   fi
   zle reset-prompt
 }
-zle -N fe
-bindkey '^e' fe
+zle -N book
+bindkey '^b' book
 
 # play single video with mpv
 fm(){
