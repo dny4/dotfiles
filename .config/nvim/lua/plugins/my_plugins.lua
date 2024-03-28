@@ -99,44 +99,6 @@ return {
     end,
   },
 
-  -- the opts function can also be used to change the default opts:
-  {
-    "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
-    opts = function(_, opts)
-      table.insert(opts.sections.lualine_x, "😄")
-    end,
-  },
-
-  -- or you can return new options to override all the defaults
-  {
-    "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
-    opts = function()
-      return {
-        --[[add your custom lualine config here]]
-        options = {
-          icons_enabled = true,
-          theme = "auto",
-          component_separators = { left = "", right = "" },
-          section_separators = { left = "", right = "" },
-          disabled_filetypes = {
-            statusline = {},
-            winbar = {},
-          },
-          ignore_focus = {},
-          always_divide_middle = true,
-          globalstatus = false,
-          refresh = {
-            statusline = 1000,
-            tabline = 1000,
-            winbar = 1000,
-          },
-        },
-      }
-    end,
-  },
-
   -- use mini.starter instead of alpha
   { import = "lazyvim.plugins.extras.ui.mini-starter" },
 
@@ -216,24 +178,6 @@ return {
     end,
   },
   {
-    "NvChad/nvim-colorizer.lua",
-    opts = {
-      RGB = true, -- #RGB hex codes
-      RRGGBB = true, -- #RRGGBB hex codes
-      names = true, -- "Name" codes like Blue
-      RRGGBBAA = true, -- #RRGGBBAA hex codes
-      rgb_fn = true, -- CSS rgb() and rgba() functions
-      hsl_fn = true, -- CSS hsl() and hsla() functions
-      css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-      css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
-      mode = "background", -- Set the display mode.
-      -- Available modes: foreground, background=
-    },
-  },
-  {
-    "KabbAmine/vCoolor.vim",
-  },
-  {
     "hrsh7th/nvim-cmp",
     dependencies = { "hrsh7th/cmp-emoji" },
     ---@param opts cmp.ConfigSchema
@@ -269,12 +213,7 @@ return {
       require("deliberate.hydra")
     end,
   },
-  {
-    "laytan/tailwind-sorter.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-lua/plenary.nvim" },
-    build = "cd formatter && npm i && npm run build",
-    config = true,
-  },
+
   {
     "folke/zen-mode.nvim",
     opts = {
