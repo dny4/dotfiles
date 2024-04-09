@@ -167,6 +167,13 @@ run_script() {
 zle -N run_script
 bindkey '^s' run_script
 
+editor() {
+  nvim
+  zle reset-prompt
+}
+zle -N editor
+bindkey '^e' editor
+
 ################################################################################
 
 eval "$(starship init zsh)"

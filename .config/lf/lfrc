@@ -66,9 +66,9 @@ map yd $printf "%s" "${fx%/*}" | wl-copy  # dirname
 map d
 map dd cut
 map dD deleteImmediately
-map dF delete
-map DD trash
-map dt trash
+# map dF delete
+# map DD trash
+# map dt trash
 map p
 map pp paste
 
