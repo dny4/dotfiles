@@ -43,9 +43,11 @@ map gs cd ~/Documents
 map gp cd ~/Projects
 map gn cd ~/Projects/mkself
 map gw cd ~/Projects/work
+map gl cd ~/Projects/learn/
 map gv cd ~/Videos
 map gc cd ~/Courses
 map gC cd ~/.config
+map gs cd ~/Courses/SWE/
 
 map xz zip
 map xt tar
@@ -88,7 +90,6 @@ map K :updir; set dironly true; up; set dironly false; open
 map a push :create<space>
 map E push $$EDITOR<space>
 map <backspace2> updir # somehow backspace2 is actual backspace on HHKB, <c-h> is <backspace>
-map A push :mkdir<space>
 
 map l lfopen
 map <enter> open
@@ -120,6 +121,8 @@ map z2 :set nopreview; set ratios 1:2
 map z3 :set ratios 1:2:3; set preview
 
 map sw set_wallpaper
+
+map L link
 
 cmd edit-config ${{
     $EDITOR ~/.config/lf/lfrc
@@ -335,3 +338,19 @@ cmd bulk-rename ${{
 	rm $index $index_edit
 }}
 
+cmd link ${{
+
+	index=$(mktemp /tmp/lf-bulk-rename-index.XXXXXXXXXX)
+	echo "$fs" > $index
+
+	max=$(($(cat $index | wc -l)+1))
+
+	counter=1
+	while [ $counter -le $max ]; do
+		a="$(cat $index | sed "${counter}q;d")"
+		counter=$(($counter+1))
+		
+		ln -s "$a" "$PWD"
+	done
+
+}}
