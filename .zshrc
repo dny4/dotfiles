@@ -27,7 +27,7 @@ function note() {
   d=$(date +%F)
   file=$HOME/Projects/mkself/daily-logs/2024/$d.md
   time=$(date +%H:%M" "%p)
-  head="---\nauthor: Dnyaneshwar\ndate: $d\ntags:\n  - default\n---\n\n**$time**\n"
+  head="---\nauthor: Dnyaneshwar\ndate: $d\ntags:\n  - six\n---\n\n**$time**\n"
 
   if [ -f "$file" ]; then
     echo "\n---\n**$time**\n" >> "$file"
@@ -185,3 +185,14 @@ PERL5LIB="/home/dny4/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/dny4/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/dny4/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/dny4/perl5"; export PERL_MM_OPT;
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+
+alias six="kitty --detach --hold nvim /home/dny4/Projects/mkself/challenges/self.transformation/six-months-form-june-24.md"
+alias note="six && note"
+alias kd='kitty --detach "$PWD"'
+
+alias tn='nvim ~/Documents/"$(date +%F)".md'

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 path=$(
-	find -L ~/Documents ~/Projects -mindepth 1 -maxdepth 2 -type d |
+	find -L ~/Documents ~/Projects -mindepth 1 -maxdepth 3 -type d |
 		fzf --print-query \
 			--height=15 --layout=reverse --border=sharp \
 			--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
