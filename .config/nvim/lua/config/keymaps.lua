@@ -14,5 +14,11 @@ vim.keymap.set("n", "<leader>T", vim.cmd.Telescope, { desc = "Telescope" })
 
 vim.keymap.set("n", "<leader>cts", vim.cmd.TailwindSort, { desc = "TailwindSort" })
 
-vim.g.loaded_netrw = 0
-vim.g.loaded_netrwPlugin = 0
+vim.keymap.set("n", "<leader>hl", function()
+  require("lualine").hide({ unhide = false })
+  print("Lualine hidden")
+end, { desc = "Hide lualine" })
+vim.keymap.set("n", "<leader>hL", function()
+  require("lualine").hide({ unhide = true })
+  print("Lualine hidden")
+end, { desc = "Unhide lualine" })

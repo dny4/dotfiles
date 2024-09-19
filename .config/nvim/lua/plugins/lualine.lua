@@ -1,3 +1,4 @@
+-- rectangular lualine
 return {
   -- or you can return new options to override all the defaults
   {

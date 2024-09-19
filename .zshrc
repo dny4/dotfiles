@@ -196,3 +196,4 @@ alias note="six && note"
 alias kd='kitty --detach "$PWD"'
 
 alias tn='nvim ~/Documents/"$(date +%F)".md'
+export PATH=/home/dny4/.config/composer/vendor/bin:/home/dny4/.rbenv/plugins/ruby-build/bin:/home/dny4/.rbenv/shims:/home/dny4/.rbenv/bin:/home/dny4/perl5/bin:/home/dny4/.deno/bin:/home/dny4/.nvm/versions/node/v20.10.0/bin:/squashfs-root/usr/bin/:/home/dny4/.cargo/bin/:/home/dny4/.local/scripts/:/home/dny4/.local/bin/:/home/dny4/.local/kitty.app/bin:/home/dny4/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/dny4/.local/share/tj-nvim/lazy/fzf/bin:/usr/local/go/bin:/home/dny4/go/bin:/opt/nvim-linux64/bin

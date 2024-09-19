@@ -1,10 +1,7 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
-require("config.lazy")
-
 -- some color override
-require("notify").setup({
-  background_colour = "#3a3a3a",
-})
+
+require("config.lazy")
 
 function ColorMyPencils()
   vim.opt.termguicolors = true
@@ -36,3 +33,9 @@ function ColorMyPencils()
 end
 
 ColorMyPencils()
+
+require("notify").setup({
+  background_colour = "#3a3a3a",
+})
+
+require("lspconfig").protols.setup({})
