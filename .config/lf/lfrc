@@ -67,10 +67,11 @@ map yd $printf "%s" "${fx%/*}" | wl-copy  # dirname
 
 map d
 map dd cut
-map dD deleteImmediately
+map dP deletePermanently
 # map dF delete
 # map DD trash
-# map dt trash
+map dt trash
+
 map p
 map pp paste
 
@@ -98,7 +99,7 @@ map z<space> push :z<space>
 map <c-c> :redraw; reload
 map <tab> :toggle; down
 map <space> quicklook
-map <delete> delete
+map <delete>  delete
 map <c-c> clear
 map . set hidden!
 map zp set preview!
@@ -157,17 +158,17 @@ cmd lfopen ${{
     fi
 }}
 
-cmd trash $trash -F $fx # trash installed via brew install trash
+cmd trash $trash-put -rf $fx # trash-cli installed via apt install trash-cli
 
 cmd delete ${{
     set -f
     printf "$fx\n\n"
     printf "Delete? [y/N]"
-    read -n1 ans
+    $ans=$(echo ans)
     [ "$ans" = "y" ] && rm -rf $fx
 }}
 
-cmd deleteImmediately ${{
+cmd deletePermanently ${{
         rm -rf $fx
 }}
 
