@@ -74,9 +74,9 @@ export FZF_DEFAULT_OPTS=" \
 
 if [ -z "$TMUX" ]
 then 
-    if [ ! $(tmux has-session -t="default" 2> /dev/null) ]
+    if [ ! $(tmux has-session -t="base" 2> /dev/null) ]
     then
-      tmux new-session -s "default" -d 2> /dev/null
+      tmux new-session -s "base" -d 2> /dev/null
     fi
 fi
 
@@ -197,3 +197,37 @@ alias kd='kitty --detach "$PWD"'
 
 alias tn='nvim ~/Documents/"$(date +%F)".md'
 export PATH=/home/dny4/.config/composer/vendor/bin:/home/dny4/.rbenv/plugins/ruby-build/bin:/home/dny4/.rbenv/shims:/home/dny4/.rbenv/bin:/home/dny4/perl5/bin:/home/dny4/.deno/bin:/home/dny4/.nvm/versions/node/v20.10.0/bin:/squashfs-root/usr/bin/:/home/dny4/.cargo/bin/:/home/dny4/.local/scripts/:/home/dny4/.local/bin/:/home/dny4/.local/kitty.app/bin:/home/dny4/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/dny4/.local/share/tj-nvim/lazy/fzf/bin:/usr/local/go/bin:/home/dny4/go/bin:/opt/nvim-linux64/bin
+eval #compdef sqlite-utils
+
+_sqlite_utils_completion() {
+    local -a completions
+    local -a completions_with_descriptions
+    local -a response
+    (( ! $+commands[sqlite-utils] )) && return 1
+
+    response=("${(@f)$(env COMP_WORDS="${words[*]}" COMP_CWORD=$((CURRENT-1)) _SQLITE_UTILS_COMPLETE=zsh_complete sqlite-utils)}")
+
+    for type key descr in ${response}; do
+        if [[ "$type" == "plain" ]]; then
+            if [[ "$descr" == "_" ]]; then
+                completions+=("$key")
+            else
+                completions_with_descriptions+=("$key":"$descr")
+            fi
+        elif [[ "$type" == "dir" ]]; then
+            _path_files -/
+        elif [[ "$type" == "file" ]]; then
+            _path_files -f
+        fi
+    done
+
+    if [ -n "$completions_with_descriptions" ]; then
+        _describe -V unsorted completions_with_descriptions -U
+    fi
+
+    if [ -n "$completions" ]; then
+        compadd -U -V unsorted -a completions
+    fi
+}
+
+compdef _sqlite_utils_completion sqlite-utils;

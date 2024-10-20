@@ -2,7 +2,5 @@ yt-dlp \
 --embed-thumbnail \
 --add-chapters \
 --add-metadata \
---embed-subs \
---sub-lang en \
 --sponsorblock-remove sponsor \
 "$@"
